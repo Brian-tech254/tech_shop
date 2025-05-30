@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import product
 
 
 # Create your views here.
@@ -9,19 +10,10 @@ def products(request):
     return render(request, 'home/products.html')
 
 def products(request):
+    products =product.objects.all()
+
     context ={
-        'products' : [
-            {'name': 'apple watch',
-             'price': 599.00,
-             'description': 'aluminium case,starlight sport'},
-
-             {'name': 'iphone 14',
-              'price': 799.00,
-              'description': '128gb storage 12gb ram'},
-
-              {'name': 'airpods pro',
-               'price': 78.00,
-               'description':'active noise collection'}
-        ]
+        'products': products,
     }
     return render(request, 'home/products.html', context)
+
